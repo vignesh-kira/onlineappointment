@@ -1,0 +1,666 @@
+{
+ "kind": "discovery#rpcDescription",
+ "etag": "\"c05bU6zpvXPOpQakG5gG3IOJh8Y/nFCHKe3sxzsyVvPKMQRCjURaBA8\"",
+ "discoveryVersion": "v1",
+ "id": "clinic:v1",
+ "name": "clinic",
+ "version": "v1",
+ "description": "This is an API",
+ "ownerDomain": "example.com",
+ "ownerName": "example.com",
+ "icons": {
+  "x16": "http://www.google.com/images/icons/product/search-16.gif",
+  "x32": "http://www.google.com/images/icons/product/search-32.gif"
+ },
+ "protocol": "rpc",
+ "rootUrl": "https://myapp.appspot.com/_ah/api/",
+ "rpcUrl": "https://myapp.appspot.com/_ah/api/rpc",
+ "rpcPath": "/_ah/api/rpc",
+ "parameters": {
+  "alt": {
+   "type": "string",
+   "description": "Data format for the response.",
+   "default": "json",
+   "enum": [
+    "json"
+   ],
+   "enumDescriptions": [
+    "Responses with Content-Type of application/json"
+   ],
+   "location": "query"
+  },
+  "fields": {
+   "type": "string",
+   "description": "Selector specifying which fields to include in a partial response.",
+   "location": "query"
+  },
+  "key": {
+   "type": "string",
+   "description": "API key. Your API key identifies your project and provides you with API access, quota, and reports. Required unless you provide an OAuth 2.0 token.",
+   "location": "query"
+  },
+  "oauth_token": {
+   "type": "string",
+   "description": "OAuth 2.0 token for the current user.",
+   "location": "query"
+  },
+  "prettyPrint": {
+   "type": "boolean",
+   "description": "Returns response with indentations and line breaks.",
+   "default": "true",
+   "location": "query"
+  },
+  "quotaUser": {
+   "type": "string",
+   "description": "Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters. Overrides userIp if both are provided.",
+   "location": "query"
+  },
+  "userIp": {
+   "type": "string",
+   "description": "IP address of the site where the request originates. Use this if you want to enforce per-user limits.",
+   "location": "query"
+  }
+ },
+ "auth": {
+  "oauth2": {
+   "scopes": {
+    "https://www.googleapis.com/auth/userinfo.email": {
+     "description": "View your email address"
+    }
+   }
+  }
+ },
+ "schemas": {
+  "Appointment": {
+   "id": "Appointment",
+   "type": "object",
+   "properties": {
+    "doctorID": {
+     "type": "string",
+     "format": "int64"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "patientID": {
+     "type": "string",
+     "format": "int64"
+    },
+    "time": {
+     "type": "string"
+    }
+   }
+  },
+  "AppointmentCollection": {
+   "id": "AppointmentCollection",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Appointment"
+     }
+    }
+   }
+  },
+  "CollectionResponse_Doctor": {
+   "id": "CollectionResponse_Doctor",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Doctor"
+     }
+    },
+    "nextPageToken": {
+     "type": "string"
+    }
+   }
+  },
+  "CollectionResponse_Patient": {
+   "id": "CollectionResponse_Patient",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Patient"
+     }
+    },
+    "nextPageToken": {
+     "type": "string"
+    }
+   }
+  },
+  "CollectionResponse_Queue": {
+   "id": "CollectionResponse_Queue",
+   "type": "object",
+   "properties": {
+    "items": {
+     "type": "array",
+     "items": {
+      "$ref": "Queue"
+     }
+    },
+    "nextPageToken": {
+     "type": "string"
+    }
+   }
+  },
+  "Doctor": {
+   "id": "Doctor",
+   "type": "object",
+   "properties": {
+    "doctorName": {
+     "type": "string"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    }
+   }
+  },
+  "Patient": {
+   "id": "Patient",
+   "type": "object",
+   "properties": {
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "patientName": {
+     "type": "string"
+    }
+   }
+  },
+  "Queue": {
+   "id": "Queue",
+   "type": "object",
+   "properties": {
+    "doctorID": {
+     "type": "string",
+     "format": "int64"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "patientID": {
+     "type": "string",
+     "format": "int64"
+    }
+   }
+  }
+ },
+ "methods": {
+  "clinic.doctors.appointments.get": {
+   "id": "clinic.doctors.appointments.get",
+   "allowGet": true,
+   "parameters": {
+    "doctorID": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    },
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "doctorID",
+    "id"
+   ],
+   "returns": {
+    "$ref": "Appointment"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.doctors.appointments.insert": {
+   "id": "clinic.doctors.appointments.insert",
+   "parameters": {
+    "doctorID": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    },
+    "resource": {
+     "$ref": "Appointment"
+    }
+   },
+   "parameterOrder": [
+    "resource",
+    "doctorID"
+   ],
+   "returns": {
+    "$ref": "Appointment"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.doctors.appointments.list": {
+   "id": "clinic.doctors.appointments.list",
+   "allowGet": true,
+   "parameters": {
+    "doctorID": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "doctorID"
+   ],
+   "returns": {
+    "$ref": "AppointmentCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.doctors.appointments.patch": {
+   "id": "clinic.doctors.appointments.patch",
+   "supportsPatch": true,
+   "parameters": {
+    "doctorID": {
+     "type": "string",
+     "format": "int64"
+    },
+    "id": {
+     "type": "string",
+     "format": "int64"
+    },
+    "patientID": {
+     "type": "string",
+     "format": "int64"
+    },
+    "time": {
+     "type": "string"
+    }
+   },
+   "parameterOrder": [
+    "doctorID",
+    "id"
+   ],
+   "returns": {
+    "$ref": "Appointment"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.doctors.appointments.update": {
+   "id": "clinic.doctors.appointments.update",
+   "parameters": {
+    "doctorID": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    },
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    },
+    "resource": {
+     "$ref": "Appointment"
+    }
+   },
+   "parameterOrder": [
+    "resource",
+    "doctorID",
+    "id"
+   ],
+   "returns": {
+    "$ref": "Appointment"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.getDoctor": {
+   "id": "clinic.getDoctor",
+   "allowGet": true,
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "returns": {
+    "$ref": "Doctor"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.getPatient": {
+   "id": "clinic.getPatient",
+   "allowGet": true,
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "returns": {
+    "$ref": "Patient"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.getQueue": {
+   "id": "clinic.getQueue",
+   "allowGet": true,
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "returns": {
+    "$ref": "Queue"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.insertDoctor": {
+   "id": "clinic.insertDoctor",
+   "parameters": {
+    "resource": {
+     "$ref": "Doctor"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Doctor"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.insertPatient": {
+   "id": "clinic.insertPatient",
+   "parameters": {
+    "resource": {
+     "$ref": "Patient"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Patient"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.insertQueue": {
+   "id": "clinic.insertQueue",
+   "parameters": {
+    "resource": {
+     "$ref": "Queue"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Queue"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.listDoctor": {
+   "id": "clinic.listDoctor",
+   "allowGet": true,
+   "parameters": {
+    "cursor": {
+     "type": "string"
+    },
+    "limit": {
+     "type": "integer",
+     "format": "int32"
+    }
+   },
+   "returns": {
+    "$ref": "CollectionResponse_Doctor"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.listPatient": {
+   "id": "clinic.listPatient",
+   "allowGet": true,
+   "parameters": {
+    "cursor": {
+     "type": "string"
+    },
+    "limit": {
+     "type": "integer",
+     "format": "int32"
+    }
+   },
+   "returns": {
+    "$ref": "CollectionResponse_Patient"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.listQueue": {
+   "id": "clinic.listQueue",
+   "allowGet": true,
+   "parameters": {
+    "cursor": {
+     "type": "string"
+    },
+    "limit": {
+     "type": "integer",
+     "format": "int32"
+    }
+   },
+   "returns": {
+    "$ref": "CollectionResponse_Queue"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.patients.appointments.delete": {
+   "id": "clinic.patients.appointments.delete",
+   "parameters": {
+    "doctorID": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    },
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "doctorID",
+    "id"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.patients.appointments.list": {
+   "id": "clinic.patients.appointments.list",
+   "allowGet": true,
+   "parameters": {
+    "patientID": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "patientID"
+   ],
+   "returns": {
+    "$ref": "AppointmentCollection"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.patients.appointments.update": {
+   "id": "clinic.patients.appointments.update",
+   "parameters": {
+    "doctorID": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    },
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    },
+    "resource": {
+     "$ref": "Appointment"
+    }
+   },
+   "parameterOrder": [
+    "resource",
+    "id",
+    "doctorID"
+   ],
+   "returns": {
+    "$ref": "Appointment"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.removeDoctor": {
+   "id": "clinic.removeDoctor",
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.removePatient": {
+   "id": "clinic.removePatient",
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.removeQueue": {
+   "id": "clinic.removeQueue",
+   "parameters": {
+    "id": {
+     "type": "string",
+     "required": true,
+     "format": "int64"
+    }
+   },
+   "parameterOrder": [
+    "id"
+   ],
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.updateDoctor": {
+   "id": "clinic.updateDoctor",
+   "parameters": {
+    "resource": {
+     "$ref": "Doctor"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Doctor"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.updatePatient": {
+   "id": "clinic.updatePatient",
+   "parameters": {
+    "resource": {
+     "$ref": "Patient"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Patient"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  },
+  "clinic.updateQueue": {
+   "id": "clinic.updateQueue",
+   "parameters": {
+    "resource": {
+     "$ref": "Queue"
+    }
+   },
+   "parameterOrder": [
+    "resource"
+   ],
+   "returns": {
+    "$ref": "Queue"
+   },
+   "scopes": [
+    "https://www.googleapis.com/auth/userinfo.email"
+   ]
+  }
+ }
+}

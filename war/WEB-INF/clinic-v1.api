@@ -1,0 +1,799 @@
+{
+  "extends" : "thirdParty.api",
+  "abstract" : false,
+  "root" : "https://myapp.appspot.com/_ah/api",
+  "name" : "clinic",
+  "version" : "v1",
+  "defaultVersion" : false,
+  "adapter" : {
+    "bns" : "https://myapp.appspot.com/_ah/spi",
+    "deadline" : 65.0,
+    "type" : "lily"
+  },
+  "auth" : {
+    "allowCookieAuth" : false
+  },
+  "frontendLimits" : {
+    "unregisteredUserQps" : -1,
+    "unregisteredQps" : -1,
+    "unregisteredDaily" : -1,
+    "rules" : [ ]
+  },
+  "cacheControl" : {
+    "type" : "no-cache",
+    "maxAge" : 0
+  },
+  "ownerDomain" : "example.com",
+  "ownerName" : "example.com",
+  "methods" : {
+    "clinic.patientsAppointmentsList" : {
+      "path" : "patients/{patientID}/appointment",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.AppointmentEndpoint.listAppointmentPatient",
+      "request" : {
+        "parameters" : {
+          "patientID" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.patientMakesAppointment" : {
+      "path" : "patients/{patientID}/appointment/{id}",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.AppointmentEndpoint.makeAppointmentPatients",
+      "request" : {
+        "parameters" : {
+          "patientID" : {
+            "type" : "int64",
+            "required" : true
+          },
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.doctorsAppointmentsGet" : {
+      "path" : "doctors/{doctorID}/appointment/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.AppointmentEndpoint.getAppointment",
+      "request" : {
+        "parameters" : {
+          "doctorID" : {
+            "type" : "int64",
+            "required" : true
+          },
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.patientCanceledAppointment" : {
+      "path" : "patients/{id}/appointment",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.AppointmentEndpoint.canceledAppointmentPatients",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.doctorsAppointmentsDelete" : {
+      "path" : "doctors/{doctorID}/appointment/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.AppointmentEndpoint.removeAppointment",
+      "request" : {
+        "parameters" : {
+          "doctorID" : {
+            "type" : "int64",
+            "required" : true
+          },
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "clinic.doctorsAppointmentsList" : {
+      "path" : "doctors/{doctorID}/appointment",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.AppointmentEndpoint.listAppointmentDoctor",
+      "request" : {
+        "parameters" : {
+          "doctorID" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.doctorsAppointmentsInsert" : {
+      "path" : "doctors/{doctorID}/appointment",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.AppointmentEndpoint.insertAppointment",
+      "request" : {
+        "parameters" : {
+          "doctorID" : {
+            "type" : "int64",
+            "required" : true
+          },
+          "time" : {
+            "type" : "int64",
+            "required" : true
+          },
+          "date" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.doctorsAppointmentsUpdate" : {
+      "path" : "doctors/{doctorID}/appointment/{id}",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.AppointmentEndpoint.updateAppointment",
+      "request" : {
+        "parameters" : {
+          "doctorID" : {
+            "type" : "int64",
+            "required" : true
+          },
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.removeDoctor" : {
+      "path" : "doctor/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.DoctorEndpoint.removeDoctor",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "clinic.listDoctor" : {
+      "path" : "doctor",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.DoctorEndpoint.listDoctor",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.getDoctor" : {
+      "path" : "doctor/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.DoctorEndpoint.getDoctor",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.insertDoctor" : {
+      "path" : "doctor",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.DoctorEndpoint.insertDoctor",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.updateDoctor" : {
+      "path" : "doctor",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.DoctorEndpoint.updateDoctor",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.removePatient" : {
+      "path" : "patient/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.PatientEndpoint.removePatient",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "clinic.updatePatient" : {
+      "path" : "patient/{id}",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.PatientEndpoint.updatePatient",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.listPatient" : {
+      "path" : "patient",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.PatientEndpoint.listPatient",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.getPatient" : {
+      "path" : "patient/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.PatientEndpoint.getPatient",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.insertPatient" : {
+      "path" : "patient",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.PatientEndpoint.insertPatient",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.listQueue" : {
+      "path" : "queue",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.QueueEndpoint.listQueue",
+      "request" : {
+        "parameters" : {
+          "cursor" : {
+            "type" : "string",
+            "required" : false
+          },
+          "limit" : {
+            "type" : "int32",
+            "required" : false
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.insertQueue" : {
+      "path" : "queue",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.QueueEndpoint.insertQueue",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.removeQueue" : {
+      "path" : "queue/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.QueueEndpoint.removeQueue",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
+    "clinic.updateQueue" : {
+      "path" : "queue",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.QueueEndpoint.updateQueue",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "clinic.getQueue" : {
+      "path" : "queue/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com" ],
+      "clientIds" : [ "292952789214-en6mletf0essp5lmj2vn3oea9v3of9pn.apps.googleusercontent.com", "", "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "com.example.QueueEndpoint.getQueue",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    }
+  },
+  "descriptor" : {
+    "schemas" : {
+      "Appointment" : {
+        "id" : "Appointment",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "doctorID" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "patientID" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "time" : {
+            "type" : "string"
+          },
+          "date" : {
+            "type" : "string"
+          }
+        }
+      },
+      "AppointmentCollection" : {
+        "id" : "AppointmentCollection",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Appointment"
+            }
+          }
+        }
+      },
+      "CollectionResponse_Doctor" : {
+        "id" : "CollectionResponse_Doctor",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Doctor"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Doctor" : {
+        "id" : "Doctor",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "doctorName" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Patient" : {
+        "id" : "Patient",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "patientName" : {
+            "type" : "string"
+          },
+          "email" : {
+            "type" : "string"
+          },
+          "googleId" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CollectionResponse_Patient" : {
+        "id" : "CollectionResponse_Patient",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Patient"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "CollectionResponse_Queue" : {
+        "id" : "CollectionResponse_Queue",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Queue"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
+      "Queue" : {
+        "id" : "Queue",
+        "type" : "object",
+        "properties" : {
+          "id" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "doctorID" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "patientID" : {
+            "type" : "string",
+            "format" : "int64"
+          }
+        }
+      }
+    },
+    "methods" : {
+      "com.example.AppointmentEndpoint.listAppointmentPatient" : {
+        "response" : {
+          "$ref" : "AppointmentCollection"
+        }
+      },
+      "com.example.AppointmentEndpoint.makeAppointmentPatients" : {
+        "request" : {
+          "$ref" : "Appointment"
+        },
+        "response" : {
+          "$ref" : "Appointment"
+        }
+      },
+      "com.example.AppointmentEndpoint.getAppointment" : {
+        "response" : {
+          "$ref" : "Appointment"
+        }
+      },
+      "com.example.AppointmentEndpoint.canceledAppointmentPatients" : {
+        "request" : {
+          "$ref" : "Appointment"
+        },
+        "response" : {
+          "$ref" : "Appointment"
+        }
+      },
+      "com.example.AppointmentEndpoint.removeAppointment" : {
+      },
+      "com.example.AppointmentEndpoint.listAppointmentDoctor" : {
+        "response" : {
+          "$ref" : "AppointmentCollection"
+        }
+      },
+      "com.example.AppointmentEndpoint.insertAppointment" : {
+        "request" : {
+          "$ref" : "Appointment"
+        },
+        "response" : {
+          "$ref" : "Appointment"
+        }
+      },
+      "com.example.AppointmentEndpoint.updateAppointment" : {
+        "request" : {
+          "$ref" : "Appointment"
+        },
+        "response" : {
+          "$ref" : "Appointment"
+        }
+      },
+      "com.example.DoctorEndpoint.removeDoctor" : {
+      },
+      "com.example.DoctorEndpoint.listDoctor" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Doctor"
+        }
+      },
+      "com.example.DoctorEndpoint.getDoctor" : {
+        "response" : {
+          "$ref" : "Doctor"
+        }
+      },
+      "com.example.DoctorEndpoint.insertDoctor" : {
+        "request" : {
+          "$ref" : "Doctor"
+        },
+        "response" : {
+          "$ref" : "Doctor"
+        }
+      },
+      "com.example.DoctorEndpoint.updateDoctor" : {
+        "request" : {
+          "$ref" : "Doctor"
+        },
+        "response" : {
+          "$ref" : "Doctor"
+        }
+      },
+      "com.example.PatientEndpoint.removePatient" : {
+      },
+      "com.example.PatientEndpoint.updatePatient" : {
+        "request" : {
+          "$ref" : "Patient"
+        },
+        "response" : {
+          "$ref" : "Patient"
+        }
+      },
+      "com.example.PatientEndpoint.listPatient" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Patient"
+        }
+      },
+      "com.example.PatientEndpoint.getPatient" : {
+        "response" : {
+          "$ref" : "Patient"
+        }
+      },
+      "com.example.PatientEndpoint.insertPatient" : {
+        "request" : {
+          "$ref" : "Patient"
+        },
+        "response" : {
+          "$ref" : "Patient"
+        }
+      },
+      "com.example.QueueEndpoint.listQueue" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Queue"
+        }
+      },
+      "com.example.QueueEndpoint.insertQueue" : {
+        "request" : {
+          "$ref" : "Queue"
+        },
+        "response" : {
+          "$ref" : "Queue"
+        }
+      },
+      "com.example.QueueEndpoint.removeQueue" : {
+      },
+      "com.example.QueueEndpoint.updateQueue" : {
+        "request" : {
+          "$ref" : "Queue"
+        },
+        "response" : {
+          "$ref" : "Queue"
+        }
+      },
+      "com.example.QueueEndpoint.getQueue" : {
+        "response" : {
+          "$ref" : "Queue"
+        }
+      }
+    }
+  }
+}
